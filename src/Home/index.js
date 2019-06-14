@@ -1,25 +1,25 @@
 import React, {Component} from 'react';
 import {inject, observer} from "mobx-react";
 import "./App.scss";
+import Board from "../Board";
 
 @inject("stores")
 @observer
 class Home extends Component {
+
+    componentDidMount() {
+        // this.props.stores.PostStore.fetchItems();
+    }
+
     render() {
         let t = this.props.stores.TimeStore;
         let p = this.props.stores.PostStore;
+        p.fetchItems();
         return (
             <div className="Home">
-                <div>{p.current_time && p.current_time}</div>
-                <div><button onClick={p.getTime}>getTime from POST</button></div>
-                <div>{t.current_time && t.current_time.toString()}</div>
-                <div>{t.ms}</div>
-                <div><button onClick={t.getTime}>getTime</button></div>
-                <ul>
-                    <li>a</li>
-                    <li>a</li>
-                    <li>a</li>
-                </ul>
+                <div>
+                    <Board/>
+                </div>
             </div>
         );
     }

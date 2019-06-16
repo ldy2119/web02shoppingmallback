@@ -7,7 +7,7 @@ import {inject, observer} from "mobx-react";
 @observer
 class BoardList extends Component{
 
-    u = this.props.stores.UserStore;
+    u = this.props.stores.ProfileStore;
     render(){
         if(this.u.user)
         {

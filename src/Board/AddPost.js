@@ -33,11 +33,11 @@ class addPost extends Component {
                 });
             }
         }
-        if(this.props.stores.UserStore.user)
+        if(this.props.stores.ProfileStore.user)
         {
             this.setState({
                 ...this.state,
-                userId : this.props.stores.UserStore.user.id
+                userId : this.props.stores.ProfileStore.user.id
             });
         }
     }
@@ -99,7 +99,7 @@ class addPost extends Component {
         if(this.state.goToList)
             return <Redirect to="/board"/>
 
-        if(!this.props.stores.UserStore.user)
+        if(!this.props.stores.ProfileStore.user)
             return <Redirect to="/board"/>
 
         return(

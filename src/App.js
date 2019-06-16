@@ -9,7 +9,7 @@ import {BrowserRouter, Route, Link} from "react-router-dom";
 
 import {Provider} from 'mobx-react';
 import Stores from "./Stores";
-import Login from "./Board/Login";
+import Profile from "./Profile/index";
 
 
 
@@ -20,13 +20,14 @@ const App = ()=>(
                 <ul className="menu-bar">
                     <li><Link to="/">Home</Link></li>
                     <li><Link to="/board">Board</Link></li>
-                    <li><Login/></li>
+                    <li><Link to="/user">Profile</Link></li>
                 </ul>
             </header>
             <section className="app-body">
 
                 <Route path = "/" exact component={Home}/>
                 <Route path = "/board/:command?/:postid?" exact component={Board}/>
+                <Route path = "/user/:command?" exact component={Profile}/>
             </section>
 
 

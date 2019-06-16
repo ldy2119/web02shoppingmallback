@@ -1,17 +1,18 @@
 import React, {Component} from 'react';
 import {inject, observer} from "mobx-react";
+import {Link} from "react-router-dom";
+import EditProfile from "./EditProfile";
 
 @inject("stores")
 @observer
-class Login extends Component{
-
+class Profile extends Component {
 
     state = {
         account : "",
         password : ""
     }
 
-    u = this.props.stores.UserStore;
+    u = this.props.stores.ProfileStore;
 
     updateAccount = (event) => {
         this.setState({
@@ -51,12 +52,15 @@ class Login extends Component{
 
     render()
     {
+        if(this.props.match && this.props.match.params.command === "edit")
+            return <EditProfile/>
         if(this.u.user)
         {
             return(
                 <div>
                     <div>
-                        {this.u.user.account}님 환영합니다.
+                        {this.u.user.username}님 환영합니다.
+                        <button><Link to="/user/edit">프로필 수정</Link></button>
                         <button onClick={this.Logout}>로그아웃</button>
                     </div>
                 </div>
@@ -66,13 +70,14 @@ class Login extends Component{
         {
             return(
                 <div>
-                    <input value={this.state.account} onChange={this.updateAccount}/>
-                    <input value={this.state.password} onChange={this.updatePassword}/>
+                    아이디 : <input value={this.state.account} onChange={this.updateAccount}/><br/>
+                    비밀번호 : <input type="password" value={this.state.password} onChange={this.updatePassword}/><br/>
                     <button onClick={this.Login}>로그인</button>
                 </div>
             );
         }
     }
-};
 
-export default Login;
+}
+
+export default Profile;

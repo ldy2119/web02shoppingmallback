@@ -1,11 +1,11 @@
 import TimeStore from "./TimeStore";
 import PostStore from "./PostStore";
-import UserStore from "./UserStore";
+import ProfileStore from "./ProfileStore";
 
 export default {
     TimeStore,
     PostStore,
-    UserStore
+    ProfileStore
 }
 
 // const Stores = {

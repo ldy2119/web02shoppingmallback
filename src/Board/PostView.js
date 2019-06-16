@@ -33,7 +33,7 @@ class PostView extends Component{
 
     render() {
         let p = this.props.stores.PostStore;
-        let u = this.props.stores.UserStore;
+        let u = this.props.stores.ProfileStore;
         if(!p.viewItem)
             return <div/>
         console.log(p.viewItem);

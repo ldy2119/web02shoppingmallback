@@ -57,9 +57,11 @@ class addPost extends Component {
     };
 
     addNewPost = async () => {
-        console.log(this.state);
         if(this.state.id == -1)
         {
+            if(window.confirm("추가하시겠습니까?") === false)
+                return;
+
             if(await this.props.stores.PostStore.addPost(this.state))
             {
                 await this.props.stores.PostStore.fetchItems();
@@ -71,6 +73,9 @@ class addPost extends Component {
         }
         else
         {
+            if(window.confirm("수정하시겠습니까?") === false)
+                return;
+
             if(await this.props.stores.PostStore.editPost(this.state))
             {
                 await this.props.stores.PostStore.fetchItems();

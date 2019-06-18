@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {inject, observer} from "mobx-react";
 import {Link} from "react-router-dom";
-import EditProfile from "./EditProfile";
+import Register from "./Register";
 
 @inject("stores")
 @observer
@@ -52,15 +52,12 @@ class Profile extends Component {
 
     render()
     {
-        if(this.props.match && this.props.match.params.command === "edit")
-            return <EditProfile/>
         if(this.u.user)
         {
             return(
                 <div>
                     <div>
                         {this.u.user.username}님 환영합니다.
-                        <button><Link to="/user/edit">프로필 수정</Link></button>
                         <button onClick={this.Logout}>로그아웃</button>
                     </div>
                 </div>
@@ -68,11 +65,15 @@ class Profile extends Component {
         }
         else
         {
+
+            if(this.props.match && this.props.match.params.command === "register")
+                return <Register/>
             return(
                 <div>
                     아이디 : <input value={this.state.account} onChange={this.updateAccount}/><br/>
                     비밀번호 : <input type="password" value={this.state.password} onChange={this.updatePassword}/><br/>
                     <button onClick={this.Login}>로그인</button>
+                    <button onClick={this.Login}><Link to="/user/register">회원가입</Link></button>
                 </div>
             );
         }

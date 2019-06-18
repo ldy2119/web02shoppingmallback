@@ -1,7 +1,8 @@
 import React, {Component} from 'react';
 import {inject, observer} from "mobx-react";
 import "./App.scss";
-import Board from "../Board";
+
+import Profile from "../Profile/index";
 
 @inject("stores")
 @observer
@@ -12,13 +13,10 @@ class Home extends Component {
     }
 
     render() {
-        let t = this.props.stores.TimeStore;
-        let p = this.props.stores.PostStore;
-        p.fetchItems();
         return (
             <div className="Home">
                 <div>
-                    <Board/>
+                    <Profile/>
                 </div>
             </div>
         );

@@ -115,7 +115,7 @@ function checkValidServiceWorker(swUrl, config) {
           });
         });
       } else {
-        // Service worker found. Proceed as normal.
+        // kr.hs.dgsw.web02shoppingmall.Service worker found. Proceed as normal.
         registerValidSW(swUrl, config);
       }
     })

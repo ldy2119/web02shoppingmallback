@@ -83,6 +83,79 @@ class ProfileStore {
             this.user = null;
         }
     }
+    @action Register = async(user) => {
+        try
+        {
+            let request = {
+                account : user.account,
+                password : user.password,
+                userName : user.name,
+                phoneNumber : user.phone,
+                telNumber : user.tel,
+                postNumber : user.post,
+                address : user.address,
+                detailAddress : user.detailAddress,
+                email : user.email,
+                mileage : 0
+            };
+            console.log(request);
+
+            let response = await axios({
+                url : "http://localhost:8080/api/user/add",
+                method: 'post',
+                headers: {
+                    'Content-type': 'application/json; charset=UTF-8'
+                },
+                timeout: 3000,
+                data: JSON.stringify(request)
+            });
+            console.log(response);
+            if(response.status === 200)
+            {
+                console.log(response.data);
+                return response.data;
+            }
+            else
+            {
+                return 0;
+                alert("전송 실패");
+            }
+        }
+        catch (e)
+        {
+            alert(e.toLocaleString());
+        }
+    }
+
+    @action checkAccount = async (account) => {
+        try
+        {
+            let response = await axios({
+                url : "http://localhost:8080/api/user/checkAccount/" + account,
+                method: 'get',
+                headers: {
+                    "Content-type" : "application/json; charset=UTF-8"
+                },
+                timeout: 3000
+            });
+            console.log(response);
+            if(response.status === 200)
+            {
+                console.log(response.data);
+                return response.data;
+            }
+            else
+            {
+                alert("전송 실패");
+                return false;
+            }
+        }
+        catch (e) {
+            console.log(e);
+            alert(e.toLocaleString());
+            return false;
+        }
+    }
 }
 
 export default ProfileStore.getInstance();
